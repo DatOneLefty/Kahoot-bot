@@ -1,5 +1,5 @@
 var cluster = require('cluster');
-var amount = 20;
+var amount = parseInt(process.argv[3]);
 
 if (cluster.isMaster) {
 
@@ -8,6 +8,7 @@ if (cluster.isMaster) {
     }
 
     cluster.on('exit', function () {
+        cluster.fork();
         cluster.fork();
     });
 
